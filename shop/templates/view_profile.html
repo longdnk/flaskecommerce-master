@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{url_for('admin')}}">Back Page</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{url_for('admin')}}">product <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('brands')}}">Brand</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('categories')}}">Category</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Add
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{url_for('addproduct')}}">Product</a>
+                <a class="dropdown-item" href="{{url_for('addbrand')}}">Brand</a>
+                <a class="dropdown-item" href="{{url_for('addcat')}}">Category</a>
+                <a class="dropdown-item" href="{{url_for('register')}}">User</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+</div>
+
+<!--==========END NAVBAR ==============-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pro file</title>
+</head>
+<body>
+<div class="form-control" style="margin-top: 20px;" align="center">
+    <img width="300px;" height="300px;" src="/static/images/{{ user.profile }}" alt="img_profile">
+    <br>
+    <br>
+    <div>
+        <p>Name: {{ user.name }}</p>
+    </div>
+    <div>
+        <p>User name: {{ user.username }}</p>
+    </div>
+    <div>
+        <p>Email: {{ user.email }}</p>
+    </div>
+    <a href="/admin" class="btn btn-primary">Back</a>
+    <a href="/profile" class="btn btn-secondary">View all</a>
+    {% if role == "admin" %}
+        <a href="/profile/edit/{{ user.id }}" class="btn btn-success">Edit</a>
+        <a href="/profile/delete/{{ user.id }}" class="btn btn-danger">Delete</a>
+    {% else %}
+        <a href="/profile/edit/{{ user.id }}" class="btn btn-success disabled-link">Edit</a>
+        <a href="/profile/delete/{{ user.id }}" class="btn btn-danger disabled-link">Delete</a>
+    {% endif %}
+</div>
+<style>
+.disabled-link {
+  pointer-events: none;
+}
+</style>
+</body>
+</html>
+{% endblock content %}

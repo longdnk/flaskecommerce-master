@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>profile</title>
+</head>
+<body>
+<h1 align="center">Profile of {{ username }}</h1>
+<link rel="stylesheet" href="/static/bootstrap.min.css">
+<div align="center">
+    <img width="300px;" height="300px;" src="/static/images/{{ img }}" alt="img_profile">
+</div>
+<div align="center">
+    <table style="margin-top: 20px;" class="table">
+        <thead>
+        <tr>
+            {% for x in a %}
+                 <th scope="col">{{ x }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+            {% for x in b %}
+                {% for y in x %}
+                    <td scope="col">{{ y }}</td>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+{% endblock content %}
